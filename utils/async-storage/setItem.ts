@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-type TSetItem = (key: string, value: string | {}) => void
+type TSetItem = (key: string, value: string | {} | unknown[]) => void
 
 export const setItem: TSetItem = async (key, value) => {
   const itemType = typeof value
