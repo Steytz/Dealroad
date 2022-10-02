@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
-import MainNavigator from './navigation/MainNavigator';
+import React, {FC} from "react"
+import MainNavigator from "./navigation/MainNavigator"
 
 const App: FC = () => {
-  return <MainNavigator />;
-};
+  return <MainNavigator />
+}
 
-export default App;
+export default App
