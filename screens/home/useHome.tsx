@@ -1,8 +1,13 @@
-import {useEffect, useState} from "react"
+import {Dispatch, SetStateAction, useEffect, useState} from "react"
 import {getItem} from "../../utils/async-storage/getItem"
 import {setItem} from "../../utils/async-storage/setItem"
 
-type TUseHome = () => {hasAppBeenOpened: undefined | boolean; supermarkets: string[]}
+type TUseHome = () => {
+  hasAppBeenOpened: undefined | boolean
+  supermarkets: string[]
+  setHasAppBeenOpened: Dispatch<SetStateAction<boolean | undefined>>
+  setSupermarkets: Dispatch<SetStateAction<string[]>>
+}
 type THandleAppOpen = () => Promise<void>
 
 const useHome: TUseHome = () => {
@@ -14,6 +19,7 @@ const useHome: TUseHome = () => {
 
     if (!hasOpenedApp) {
       await setItem("hasOpenedApp", "true")
+      await setItem("supermarkets", [])
       return setHasAppBeenOpened(false)
     }
 
@@ -30,7 +36,7 @@ const useHome: TUseHome = () => {
     }
   }, [])
 
-  return {hasAppBeenOpened, supermarkets}
+  return {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets}
 }
 
 export default useHome

@@ -1,23 +1,28 @@
 import React, {FC} from "react"
 import SupermarketsTabNavigator from "./components/SupermarketsTabNavigator"
-import {Text, View} from "react-native"
+import {Pressable, Text, View} from "react-native"
 import useHome from "./useHome"
+import {setItem} from "../../utils/async-storage/setItem"
+import {getItem} from "../../utils/async-storage/getItem"
+import AppFirstOpenWelcome from "./components/AppFirstOpenWelcome"
 
 const Home: FC = () => {
-  const {hasAppBeenOpened, supermarkets} = useHome()
+  const {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets} = useHome()
 
   if (!hasAppBeenOpened) {
-    return (
-      <View>
-        <Text>View for first time opening app</Text>
-      </View>
-    )
+    return <AppFirstOpenWelcome setHasAppBeenOpened={setHasAppBeenOpened} setSupermarkets={setSupermarkets} />
   }
 
   if (hasAppBeenOpened && !supermarkets.length) {
     return (
       <View>
         <Text>View for already opened app but did not select any supermarkets</Text>
+        <Pressable onPress={() => setItem("hasOpenedApp", "false")}>
+          <Text>Set Supermarkets</Text>
+        </Pressable>
+        <Pressable onPress={() => getItem("supermarkets")}>
+          <Text>Get Supermarkets</Text>
+        </Pressable>
       </View>
     )
   }
