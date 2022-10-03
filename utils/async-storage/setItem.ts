@@ -1,23 +1,21 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
-type TSetItem = (item: string | {}) => void;
+type TSetItem = (key: string, value: string | {[key: string]: unknown} | unknown[]) => void
 
-export const setItem: TSetItem = async item => {
-  const itemType = typeof item;
+export const setItem: TSetItem = async (key, value) => {
+  const itemType = typeof value
   try {
     switch (itemType) {
-      case 'string':
-        await AsyncStorage.setItem('key', item as string);
-        return;
-      case 'object':
-        await AsyncStorage.setItem('key', JSON.stringify(item));
-        return;
+      case "string":
+        await AsyncStorage.setItem(key, value as string)
+        return
+      case "object":
+        await AsyncStorage.setItem(key, JSON.stringify(value))
+        return
       default:
-        console.warn(
-          'Type not supported, please recheck what you are passing in',
-        );
+        console.warn("Type not supported, please recheck what you are passing in")
     }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
-};
+}
