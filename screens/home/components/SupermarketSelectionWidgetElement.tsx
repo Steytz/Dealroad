@@ -1,6 +1,7 @@
 import React, {Dispatch, FC, SetStateAction, useState} from "react"
-import {Switch, Text, View, ViewStyle} from "react-native"
+import {Switch, Text, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
+import {palette} from "../../../theme/palette"
 
 interface Props {
   logo: string
@@ -11,9 +12,23 @@ interface Props {
 const SContainer: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
+  borderWidth: 2,
+  borderRadius: 15,
+  borderColor: palette.blue,
+  padding: 14,
+  marginVertical: 3.5,
 }
 
-const SNameLogoContainer: ViewStyle = {}
+const SNameLogoContainer: ViewStyle = {
+  flexDirection: "row",
+  alignItems: "center",
+}
+
+const SDisplayName: TextStyle = {
+  color: palette.black,
+  fontSize: 18,
+  fontWeight: "500",
+}
 
 const SupermarketSelectionWidgetElement: FC<Props> = ({logo, displayName, setSupermarkets}) => {
   const [isEnabled, setIsEnabled] = useState(false)
@@ -30,11 +45,11 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({logo, displayName, setSup
     <View style={SContainer}>
       <View style={SNameLogoContainer}>
         <Text>{logo}</Text>
-        <Text>{displayName}</Text>
+        <Text style={SDisplayName}>{displayName}</Text>
       </View>
       <Switch
-        trackColor={{false: "#767577", true: "#81b0ff"}}
-        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        trackColor={{false: "#767577", true: palette.black}}
+        thumbColor={"#fff"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={() => toggleSwitch(!isEnabled, displayName)}
         value={isEnabled}

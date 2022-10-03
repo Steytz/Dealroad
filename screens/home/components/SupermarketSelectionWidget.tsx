@@ -1,5 +1,5 @@
 import React, {Dispatch, FC, SetStateAction} from "react"
-import {View} from "react-native"
+import {View, ViewStyle} from "react-native"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SupermarketSelectionWidgetElement from "./SupermarketSelectionWidgetElement"
 
@@ -7,9 +7,13 @@ interface Props {
   setSupermarkets: Dispatch<SetStateAction<string[]>>
 }
 
+const SContainer: ViewStyle = {
+  marginTop: 21,
+}
+
 const SupermarketSelectionWidget: FC<Props> = ({setSupermarkets}) => {
   return (
-    <View>
+    <View style={SContainer}>
       {Object.values(supportedSupermarkets).map((supermarket, index) => (
         <SupermarketSelectionWidgetElement
           key={index}
