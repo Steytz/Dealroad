@@ -7,12 +7,14 @@ type TUseHome = () => {
   supermarkets: string[]
   setHasAppBeenOpened: Dispatch<SetStateAction<boolean | undefined>>
   setSupermarkets: Dispatch<SetStateAction<string[]>>
+  isLoading: boolean
 }
 type THandleAppOpen = () => Promise<void>
 
 const useHome: TUseHome = () => {
   const [hasAppBeenOpened, setHasAppBeenOpened] = useState<boolean>()
   const [supermarkets, setSupermarkets] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const handleAppOpen: THandleAppOpen = async () => {
     const hasOpenedApp = await getItem("hasOpenedApp")
@@ -20,7 +22,7 @@ const useHome: TUseHome = () => {
     if (!hasOpenedApp) {
       await setItem("hasOpenedApp", "true")
       await setItem("supermarkets", [])
-      return setHasAppBeenOpened(false)
+      setHasAppBeenOpened(false)
     }
 
     if (hasOpenedApp) {
@@ -28,6 +30,7 @@ const useHome: TUseHome = () => {
       const supermarkets = await getItem("supermarkets")
       if (supermarkets) setSupermarkets(supermarkets as string[])
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const useHome: TUseHome = () => {
     }
   }, [])
 
-  return {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets}
+  return {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets, isLoading}
 }
 
 export default useHome

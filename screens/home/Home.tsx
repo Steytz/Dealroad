@@ -7,7 +7,9 @@ import {getItem} from "../../utils/async-storage/getItem"
 import AppFirstOpenWelcome from "./components/AppFirstOpenWelcome"
 
 const Home: FC = () => {
-  const {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets} = useHome()
+  const {hasAppBeenOpened, setHasAppBeenOpened, supermarkets, setSupermarkets, isLoading} = useHome()
+
+  if (isLoading) return null
 
   if (!hasAppBeenOpened) {
     return <AppFirstOpenWelcome setHasAppBeenOpened={setHasAppBeenOpened} setSupermarkets={setSupermarkets} />
