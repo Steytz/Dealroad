@@ -2,9 +2,11 @@ import React, {Dispatch, FC, SetStateAction, useState} from "react"
 import {Switch, Text, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
 import {palette} from "../../../theme/palette"
+import SvgIcon from "../../../global-components/icon/SvgIcon"
+import {TSupportedSupermarketsElementLogo} from "../supportedSupermarkets"
 
 interface Props {
-  logo: string
+  logo: TSupportedSupermarketsElementLogo
   displayName: string
   setSupermarkets: Dispatch<SetStateAction<string[]>>
 }
@@ -30,7 +32,14 @@ const SDisplayName: TextStyle = {
   fontWeight: "500",
 }
 
-const SupermarketSelectionWidgetElement: FC<Props> = ({logo, displayName, setSupermarkets}) => {
+const SupermarketSelectionWidgetElement: FC<Props> = ({
+  logo: {
+    logoName,
+    dimensions: [width, height],
+  },
+  displayName,
+  setSupermarkets,
+}) => {
   const [isEnabled, setIsEnabled] = useState(false)
 
   const toggleSwitch: (active: boolean, name: string) => void = async active => {
@@ -44,7 +53,7 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({logo, displayName, setSup
   return (
     <View style={SContainer}>
       <View style={SNameLogoContainer}>
-        <Text>{logo}</Text>
+        <SvgIcon iconString={logoName} iconStyle={{width, height, marginRight: 14}} />
         <Text style={SDisplayName}>{displayName}</Text>
       </View>
       <Switch
