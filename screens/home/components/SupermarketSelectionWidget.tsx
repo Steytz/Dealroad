@@ -1,17 +1,15 @@
-import React, {Dispatch, FC, SetStateAction} from "react"
+import React, {FC} from "react"
 import {View, ViewStyle} from "react-native"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SupermarketSelectionWidgetElement from "./SupermarketSelectionWidgetElement"
 
-interface Props {
-  setSupermarkets: Dispatch<SetStateAction<string[]>>
-}
+interface Props {}
 
 const SContainer: ViewStyle = {
   marginTop: 21,
 }
 
-const SupermarketSelectionWidget: FC<Props> = ({setSupermarkets}) => {
+const SupermarketSelectionWidget: FC<Props> = ({}) => {
   return (
     <View style={SContainer}>
       {Object.values(supportedSupermarkets).map((supermarket, index) => (
@@ -19,7 +17,6 @@ const SupermarketSelectionWidget: FC<Props> = ({setSupermarkets}) => {
           key={index}
           logo={supermarket.logo}
           displayName={supermarket.displayName}
-          setSupermarkets={setSupermarkets}
         />
       ))}
     </View>

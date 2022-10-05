@@ -5,7 +5,6 @@ import {palette} from "../../../theme/palette"
 
 interface Props {
   setHasAppBeenOpened: Dispatch<SetStateAction<boolean | undefined>>
-  setSupermarkets: Dispatch<SetStateAction<string[]>>
 }
 
 const SContainer: ViewStyle = {
@@ -38,14 +37,14 @@ const SDoneBtnText: TextStyle = {
   fontWeight: "500",
 }
 
-const AppFirstOpenWelcome: FC<Props> = ({setHasAppBeenOpened, setSupermarkets}) => {
+const AppFirstOpenWelcome: FC<Props> = ({setHasAppBeenOpened}) => {
   return (
     <View style={SContainer}>
       <Text style={SWelcomeHeader}>
         Welcome to Dealroad,{"\n"}never buy expensive{"\n"}groceries again.
       </Text>
       <Text style={SWelcomeSubText}>Please add some supermarkets from{"\n"}our supported list.</Text>
-      <SupermarketSelectionWidget setSupermarkets={setSupermarkets} />
+      <SupermarketSelectionWidget />
       <Pressable onPress={() => setHasAppBeenOpened(true)} style={SDoneBtn}>
         <Text style={SDoneBtnText}>Done</Text>
       </Pressable>
