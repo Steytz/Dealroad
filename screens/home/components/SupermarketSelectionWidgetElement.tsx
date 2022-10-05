@@ -1,14 +1,14 @@
-import React, {Dispatch, FC, SetStateAction, useState} from "react"
+import React, {FC, useState} from "react"
 import {Switch, Text, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
 import {palette} from "../../../theme/palette"
 import SvgIcon from "../../../global-components/icon/SvgIcon"
 import {TSupportedSupermarketsElementLogo} from "../supportedSupermarkets"
+import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 
 interface Props {
   logo: TSupportedSupermarketsElementLogo
   displayName: string
-  setSupermarkets: Dispatch<SetStateAction<string[]>>
 }
 
 const SContainer: ViewStyle = {
@@ -32,17 +32,19 @@ const SDisplayName: TextStyle = {
   fontWeight: "500",
 }
 
+type TToggleSwitch = (active: boolean, name: string) => void
+
 const SupermarketSelectionWidgetElement: FC<Props> = ({
   logo: {
     logoName,
     dimensions: [width, height],
   },
   displayName,
-  setSupermarkets,
 }) => {
   const [isEnabled, setIsEnabled] = useState(false)
+  const {setSupermarkets} = useSupermarketsContext()
 
-  const toggleSwitch: (active: boolean, name: string) => void = async active => {
+  const toggleSwitch: TToggleSwitch = async active => {
     await updateArrayItem("supermarkets", displayName, active ? "add" : "remove")
     setIsEnabled(active)
     setSupermarkets(prev => {
