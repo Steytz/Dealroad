@@ -4,6 +4,7 @@ import {Pressable, Text, View} from "react-native"
 import NoSupermarkets from "./NoSupermarkets"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 import {setItem} from "../../../utils/async-storage/setItem"
+import SupermarketsTabNavigatorItem from "./SupermarketsTabNavigatorItem"
 
 type THomeTabStack = {[key: string]: {}}
 
@@ -35,7 +36,17 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
   return (
     <Tab.Navigator initialRouteName="testTab1">
       {supermarkets.map((supermarket, index) => (
-        <Tab.Screen key={index} name={supermarket} component={Test1} />
+        <Tab.Screen
+          key={index}
+          name={supermarket}
+          component={Test1}
+          options={{
+            title: ({focused}) => (
+              <SupermarketsTabNavigatorItem supermarket={supermarket} focused={focused} />
+            ),
+            tabBarIndicator: () => null,
+          }}
+        />
       ))}
     </Tab.Navigator>
   )
