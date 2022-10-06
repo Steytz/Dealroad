@@ -1,28 +1,14 @@
 import React, {FC, useState} from "react"
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs"
-import {Pressable, Text, View} from "react-native"
 import NoSupermarkets from "./NoSupermarkets"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
-import {setItem} from "../../../utils/async-storage/setItem"
-import SupermarketsTabNavigatorItem from "./SupermarketsTabNavigatorItem"
+import SupermarketsTabNavigatorChip from "./SupermarketsTabNavigatorChip"
+import SupermarketsTabNavigatorContent from "./SupermarketsTab"
+import supportedSupermarkets from "../supportedSupermarkets"
 
 type THomeTabStack = {[key: string]: {}}
 
 const Tab = createMaterialTopTabNavigator<THomeTabStack>()
-
-const Test1 = () => {
-  return (
-    <View style={{flex: 1}}>
-      <Pressable
-        onPress={() => {
-          setItem("hasOpenedApp", "false")
-          setItem("supermarkets", [])
-        }}>
-        <Text>Total Reset</Text>
-      </Pressable>
-    </View>
-  )
-}
 
 interface Props {}
 
@@ -33,16 +19,19 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
   if (noSupermarkets) {
     return <NoSupermarkets setIsNoSupermarketComponentActive={setNoSupermarkets} />
   }
+
   return (
-    <Tab.Navigator initialRouteName="testTab1">
+    <Tab.Navigator>
       {supermarkets.map((supermarket, index) => (
         <Tab.Screen
           key={index}
           name={supermarket}
-          component={Test1}
+          children={() => (
+            <SupermarketsTabNavigatorContent sections={supportedSupermarkets[supermarket].sections} />
+          )}
           options={{
             title: ({focused}) => (
-              <SupermarketsTabNavigatorItem supermarket={supermarket} focused={focused} />
+              <SupermarketsTabNavigatorChip supermarket={supermarket} focused={focused} />
             ),
             tabBarIndicator: () => null,
           }}

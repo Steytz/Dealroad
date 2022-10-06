@@ -26,7 +26,7 @@ const SFSupermarketName = (focused: boolean): TextStyle => ({
   fontSize: 16,
 })
 
-const SupermarketsTabNavigatorItem: FC<Props> = ({focused, supermarket}) => {
+const SupermarketsTabNavigatorChip: FC<Props> = ({focused, supermarket}) => {
   const svgDimensions = 22
 
   return (
@@ -40,4 +40,4 @@ const SupermarketsTabNavigatorItem: FC<Props> = ({focused, supermarket}) => {
   )
 }
 
-export default SupermarketsTabNavigatorItem
+export default SupermarketsTabNavigatorChip
