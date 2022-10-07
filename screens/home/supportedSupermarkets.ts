@@ -25,7 +25,12 @@ const supportedSupermarkets: TSupportedSupermarkets = {
   "Aldi S": {
     displayName: "Aldi S",
     logo: {logoName: "Aldi S", dimensions: [28, 28]},
-    sections: [{title: "", url: ""}],
+    sections: [
+      {title: "Frischekracher", url: "https://www.aldi-sued.de/de/angebote/frischekracher.html"},
+      {title: "Preisaktion", url: "https://www.aldi-sued.de/de/angebote/preisaktion.html"},
+      {title: "Markenaktion", url: "https://www.aldi-sued.de/de/angebote/markenaktion-der-woche.html"},
+      {title: "Prospekte", url: "https://www.aldi-sued.de/de/angebote/Prospekte.html"},
+    ],
   },
 }
 
