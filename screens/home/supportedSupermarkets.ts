@@ -20,7 +20,7 @@ const supportedSupermarkets: TSupportedSupermarkets = {
   Lidl: {
     displayName: "Lidl",
     logo: {logoName: "Lidl", dimensions: [28, 28]},
-    sections: [{title: "", url: ""}],
+    sections: [{title: "Angebote Übersicht", url: "https://www.lidl.de/c/billiger-wochenendlich/a10006502"}],
   },
   "Aldi S": {
     displayName: "Aldi S",
