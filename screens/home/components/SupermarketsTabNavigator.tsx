@@ -3,7 +3,7 @@ import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs
 import NoSupermarkets from "./NoSupermarkets"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 import SupermarketsTabNavigatorChip from "./SupermarketsTabNavigatorChip"
-import SupermarketsTabNavigatorContent from "./SupermarketsTab"
+import SupermarketsTab from "./SupermarketsTab"
 import supportedSupermarkets from "../supportedSupermarkets"
 
 type THomeTabStack = {[key: string]: {}}
@@ -26,9 +26,7 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
         <Tab.Screen
           key={index}
           name={supermarket}
-          children={() => (
-            <SupermarketsTabNavigatorContent sections={supportedSupermarkets[supermarket].sections} />
-          )}
+          children={() => <SupermarketsTab sections={supportedSupermarkets[supermarket].sections} />}
           options={{
             title: ({focused}) => (
               <SupermarketsTabNavigatorChip supermarket={supermarket} focused={focused} />
