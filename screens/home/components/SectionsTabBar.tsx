@@ -13,7 +13,7 @@ interface Props {
 const STabBarContainer: ViewStyle = {
   flex: 0,
   backgroundColor: palette.white,
-  marginTop: 7,
+  marginVertical: 7,
 }
 
 const SectionsTabBar: FC<Props> = ({sections, activeSection, setActiveSection}) => {
