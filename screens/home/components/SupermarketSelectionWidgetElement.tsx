@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react"
+import React, {FC, memo} from "react"
 import {Switch, Text, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
 import {palette} from "../../../theme/palette"
@@ -9,6 +9,7 @@ import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 interface Props {
   logo: TSupportedSupermarketsElementLogo
   displayName: string
+  activeInStore?: boolean
 }
 
 const SContainer: ViewStyle = {
@@ -40,13 +41,12 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
     dimensions: [width, height],
   },
   displayName,
+  activeInStore,
 }) => {
-  const [isEnabled, setIsEnabled] = useState(false)
   const {setSupermarkets} = useSupermarketsContext()
 
   const toggleSwitch: TToggleSwitch = async active => {
     await updateArrayItem("supermarkets", displayName, active ? "add" : "remove")
-    setIsEnabled(active)
     setSupermarkets(prev => {
       return active ? [...prev, displayName] : prev.filter(item => item != displayName)
     })
@@ -62,11 +62,11 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
         trackColor={{false: "#767577", true: palette.black}}
         thumbColor={"#fff"}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={() => toggleSwitch(!isEnabled, displayName)}
-        value={isEnabled}
+        onValueChange={() => toggleSwitch(!activeInStore, displayName)}
+        value={activeInStore}
       />
     </View>
   )
 }
 
-export default SupermarketSelectionWidgetElement
+export default memo(SupermarketSelectionWidgetElement)

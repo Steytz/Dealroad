@@ -5,6 +5,7 @@ import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 import SupermarketsTabNavigatorChip from "./SupermarketsTabNavigatorChip"
 import SupermarketsTab from "./SupermarketsTab"
 import supportedSupermarkets from "../supportedSupermarkets"
+import SettingsTab from "./SettingsTab"
 
 type THomeTabStack = {[key: string]: {}}
 
@@ -21,20 +22,26 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
   }
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{tabBarScrollEnabled: true, tabBarItemStyle: {width: 120}}}>
       {supermarkets.map((supermarket, index) => (
         <Tab.Screen
           key={index}
           name={supermarket}
           children={() => <SupermarketsTab sections={supportedSupermarkets[supermarket].sections} />}
           options={{
-            title: ({focused}) => (
-              <SupermarketsTabNavigatorChip supermarket={supermarket} focused={focused} />
-            ),
+            title: ({focused}) => <SupermarketsTabNavigatorChip item={supermarket} focused={focused} />,
             tabBarIndicator: () => null,
           }}
         />
       ))}
+      <Tab.Screen
+        name="Settings"
+        children={() => <SettingsTab />}
+        options={{
+          title: ({focused}) => <SupermarketsTabNavigatorChip item="Settings" focused={focused} />,
+          tabBarIndicator: () => null,
+        }}
+      />
     </Tab.Navigator>
   )
 }

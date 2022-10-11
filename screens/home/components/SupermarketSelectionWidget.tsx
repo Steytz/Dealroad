@@ -1,7 +1,8 @@
-import React, {FC} from "react"
+import React, {FC, memo} from "react"
 import {View, ViewStyle} from "react-native"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SupermarketSelectionWidgetElement from "./SupermarketSelectionWidgetElement"
+import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 
 interface Props {}
 
@@ -10,6 +11,7 @@ const SContainer: ViewStyle = {
 }
 
 const SupermarketSelectionWidget: FC<Props> = ({}) => {
+  const {supermarkets} = useSupermarketsContext()
   return (
     <View style={SContainer}>
       {Object.values(supportedSupermarkets).map((supermarket, index) => (
@@ -17,10 +19,11 @@ const SupermarketSelectionWidget: FC<Props> = ({}) => {
           key={index}
           logo={supermarket.logo}
           displayName={supermarket.displayName}
+          activeInStore={supermarkets.includes(supermarket.displayName)}
         />
       ))}
     </View>
   )
 }
 
-export default SupermarketSelectionWidget
+export default memo(SupermarketSelectionWidget)
