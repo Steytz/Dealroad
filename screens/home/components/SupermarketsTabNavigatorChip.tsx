@@ -6,7 +6,7 @@ import {TIconString} from "../../../global-components/icon/getIcon"
 
 interface Props {
   focused: boolean
-  supermarket: string
+  item: string
 }
 
 const SFContainer = (focused: boolean): ViewStyle => ({
@@ -26,16 +26,13 @@ const SFSupermarketName = (focused: boolean): TextStyle => ({
   fontSize: 16,
 })
 
-const SupermarketsTabNavigatorChip: FC<Props> = ({focused, supermarket}) => {
+const SupermarketsTabNavigatorChip: FC<Props> = ({focused, item}) => {
   const svgDimensions = 22
 
   return (
     <View style={SFContainer(focused)}>
-      <SvgIcon
-        iconString={supermarket as TIconString}
-        iconStyle={{width: svgDimensions, height: svgDimensions}}
-      />
-      <Text style={SFSupermarketName(focused)}>{supermarket}</Text>
+      <SvgIcon iconString={item as TIconString} iconStyle={{width: svgDimensions, height: svgDimensions}} />
+      <Text style={SFSupermarketName(focused)}>{item}</Text>
     </View>
   )
 }
