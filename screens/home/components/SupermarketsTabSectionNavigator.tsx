@@ -1,27 +1,26 @@
 import React, {FC, useState} from "react"
-import {View, ViewStyle} from "react-native"
+import {ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
-import WebView from "react-native-webview"
 import SectionsTabBar from "./SectionsTabBar"
-import {palette} from "../../../theme/palette"
+import Container from "../../../global-components/Container/Container"
+import SupermarketsWebview from "./SupermarketsWebview"
 
 interface Props {
   sections: TSupportedSupermarketsElementSection[]
 }
 
 const SContainer: ViewStyle = {
-  flex: 1,
-  backgroundColor: palette.white,
+  paddingHorizontal: 0,
 }
 
 const SupermarketsTabSectionNavigator: FC<Props> = ({sections}) => {
   const [activeSection, setActiveSection] = useState(sections[0])
 
   return (
-    <View style={SContainer}>
+    <Container style={SContainer}>
       <SectionsTabBar sections={sections} activeSection={activeSection} setActiveSection={setActiveSection} />
-      <WebView originWhitelist={["*"]} source={{uri: activeSection.url}} />
-    </View>
+      <SupermarketsWebview uri={activeSection.url} />
+    </Container>
   )
 }
 

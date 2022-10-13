@@ -3,11 +3,12 @@ import {View, ViewStyle} from "react-native"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SupermarketSelectionWidgetElement from "./SupermarketSelectionWidgetElement"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
+import spacing from "../../../theme/spacing"
 
 interface Props {}
 
 const SContainer: ViewStyle = {
-  marginTop: 21,
+  marginTop: spacing[2],
 }
 
 const SupermarketSelectionWidget: FC<Props> = ({}) => {

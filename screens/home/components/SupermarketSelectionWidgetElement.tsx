@@ -1,10 +1,13 @@
 import React, {FC, memo} from "react"
-import {Switch, Text, TextStyle, View, ViewStyle} from "react-native"
+import {Switch, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
 import {palette} from "../../../theme/palette"
 import SvgIcon from "../../../global-components/icon/SvgIcon"
 import {TSupportedSupermarketsElementLogo} from "../supportedSupermarkets"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
+import Text from "../../../global-components/Text/Text"
+import {useThemeContext} from "../../../contexts/ThemeContext"
+import spacing from "../../../theme/spacing"
 
 interface Props {
   logo: TSupportedSupermarketsElementLogo
@@ -18,7 +21,7 @@ const SContainer: ViewStyle = {
   borderWidth: 2,
   borderRadius: 15,
   borderColor: palette.blue,
-  padding: 14,
+  padding: spacing[1],
   marginVertical: 3.5,
 }
 
@@ -28,7 +31,6 @@ const SNameLogoContainer: ViewStyle = {
 }
 
 const SDisplayName: TextStyle = {
-  color: palette.black,
   fontSize: 18,
   fontWeight: "500",
 }
@@ -44,7 +46,7 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
   activeInStore,
 }) => {
   const {setSupermarkets} = useSupermarketsContext()
-
+  const {colors} = useThemeContext()
   const toggleSwitch: TToggleSwitch = async active => {
     await updateArrayItem("supermarkets", displayName, active ? "add" : "remove")
     setSupermarkets(prev => {
@@ -56,10 +58,10 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
     <View style={SContainer}>
       <View style={SNameLogoContainer}>
         <SvgIcon iconString={logoName} iconStyle={{width, height, marginRight: 14}} />
-        <Text style={SDisplayName}>{displayName}</Text>
+        <Text style={SDisplayName} text={displayName} />
       </View>
       <Switch
-        trackColor={{false: "#767577", true: palette.black}}
+        trackColor={{false: colors.switchTrackOff, true: colors.switchTrackOn}}
         thumbColor={"#fff"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={() => toggleSwitch(!activeInStore, displayName)}

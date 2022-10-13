@@ -1,12 +1,19 @@
 import React, {FC, memo} from "react"
-import {ScrollView, Text, TextStyle, View, ViewStyle} from "react-native"
+import {ScrollView, TextStyle, View, ViewStyle} from "react-native"
 import {palette} from "../../../theme/palette"
 import DarkModeToggle from "./DarkModeToggle"
 import SupermarketSelectionWidget from "./SupermarketSelectionWidget"
+import {useThemeContext} from "../../../contexts/ThemeContext"
+import {TTheme} from "../../../theme/theme"
+import spacing from "../../../theme/spacing"
+import Text from "../../../global-components/Text/Text"
 
 interface Props {}
 
-const SContainer: ViewStyle = {}
+const SFContainer = (colors: TTheme): ViewStyle => ({
+  backgroundColor: colors.container,
+  flex: 1,
+})
 
 const SDivider: ViewStyle = {
   backgroundColor: palette.red,
@@ -15,24 +22,24 @@ const SDivider: ViewStyle = {
 }
 
 const SSupportedSupermarketsContainer: ViewStyle = {
-  marginTop: 21,
-  marginHorizontal: 14,
+  marginTop: spacing[2],
+  marginHorizontal: spacing[1],
 }
 
 const SSupportedSupermarketsText: TextStyle = {
-  fontSize: 16,
-  color: palette.black,
   fontWeight: "bold",
 }
 
 const SettingsTab: FC<Props> = ({}) => {
+  const {colors} = useThemeContext()
+
   return (
-    <ScrollView style={SContainer}>
+    <ScrollView style={SFContainer(colors)}>
       <DarkModeToggle />
       <View style={SDivider} />
 
       <View style={SSupportedSupermarketsContainer}>
-        <Text style={SSupportedSupermarketsText}>Toggle Supported Supermarkets</Text>
+        <Text style={SSupportedSupermarketsText} text="Toggle Supported Supermarkets" />
         <SupermarketSelectionWidget />
       </View>
     </ScrollView>

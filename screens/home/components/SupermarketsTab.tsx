@@ -1,22 +1,27 @@
 import React, {FC, memo} from "react"
-import {View} from "react-native"
+import {ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
-import WebView from "react-native-webview"
 import SupermarketsTabSectionNavigator from "./SupermarketsTabSectionNavigator"
+import Container from "../../../global-components/Container/Container"
+import SupermarketsWebview from "./SupermarketsWebview"
 
 interface Props {
   sections: TSupportedSupermarketsElementSection[]
 }
 
+const SCustomContainer: ViewStyle = {
+  paddingHorizontal: 0,
+}
+
 const SupermarketsTab: FC<Props> = ({sections}) => {
   return (
-    <View style={{flex: 1}}>
+    <Container style={SCustomContainer}>
       {sections.length > 1 ? (
         <SupermarketsTabSectionNavigator sections={sections} />
       ) : (
-        <WebView originWhitelist={["*"]} source={{uri: sections[0].url}} />
+        <SupermarketsWebview uri={sections[0].url} />
       )}
-    </View>
+    </Container>
   )
 }
 

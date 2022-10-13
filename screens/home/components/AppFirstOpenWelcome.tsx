@@ -1,35 +1,33 @@
 import React, {Dispatch, FC, SetStateAction} from "react"
-import {Pressable, Text, TextStyle, View, ViewStyle} from "react-native"
+import {Pressable, TextStyle, ViewStyle} from "react-native"
 import SupermarketSelectionWidget from "./SupermarketSelectionWidget"
 import {palette} from "../../../theme/palette"
+import Container from "../../../global-components/Container/Container"
+import Text from "../../../global-components/Text/Text"
+import DarkModeButton from "./DarkModeButton"
+import spacing from "../../../theme/spacing"
 
 interface Props {
   setHasAppBeenOpened: Dispatch<SetStateAction<boolean | undefined>>
 }
 
-const SContainer: ViewStyle = {
-  paddingHorizontal: 14,
-  backgroundColor: palette.white,
-  flex: 1,
-}
 const SWelcomeHeader: TextStyle = {
   color: palette.orange,
   fontWeight: "bold",
   fontSize: 24,
-  marginTop: 35,
+  marginTop: spacing[4],
 }
 const SWelcomeSubText: TextStyle = {
-  color: palette.black,
   fontSize: 18,
-  marginTop: 14,
+  marginTop: spacing[1],
 }
 const SDoneBtn: ViewStyle = {
   backgroundColor: palette.orange,
   alignSelf: "center",
   paddingHorizontal: 35,
-  paddingVertical: 7,
+  paddingVertical: spacing[0],
   borderRadius: 15,
-  marginTop: 42,
+  marginTop: spacing[5],
 }
 const SDoneBtnText: TextStyle = {
   color: palette.black,
@@ -37,18 +35,23 @@ const SDoneBtnText: TextStyle = {
   fontWeight: "500",
 }
 
+const SDarkModeButton: ViewStyle = {
+  position: "absolute",
+  top: 20,
+  right: 20,
+}
+
 const AppFirstOpenWelcome: FC<Props> = ({setHasAppBeenOpened}) => {
   return (
-    <View style={SContainer}>
-      <Text style={SWelcomeHeader}>
-        Welcome to Dealroad,{"\n"}never buy expensive{"\n"}groceries again.
-      </Text>
-      <Text style={SWelcomeSubText}>Please add some supermarkets from{"\n"}our supported list.</Text>
+    <Container>
+      <Text style={SWelcomeHeader} text={"Welcome to Dealroad,\nnever buy expensive\ngroceries again."} />
+      <Text style={SWelcomeSubText} text={"Please add some supermarkets from\nour supported list."} />
       <SupermarketSelectionWidget />
       <Pressable onPress={() => setHasAppBeenOpened(true)} style={SDoneBtn}>
-        <Text style={SDoneBtnText}>Done</Text>
+        <Text style={SDoneBtnText} text="Done" />
       </Pressable>
-    </View>
+      <DarkModeButton buttonStyle={SDarkModeButton} />
+    </Container>
   )
 }
 

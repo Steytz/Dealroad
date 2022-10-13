@@ -1,5 +1,5 @@
 type TGetIcon = (icon: TIconString) => number
-export type TIconString = "Rewe" | "Lidl" | "Aldi S" | "CryFace" | "Settings"
+export type TIconString = "Rewe" | "Lidl" | "Aldi S" | "CryFace" | "Settings" | "LightMode" | "DarkMode"
 
 export const getIcon: TGetIcon = icon => {
   switch (icon) {
@@ -13,5 +13,9 @@ export const getIcon: TGetIcon = icon => {
       return require("../../assets/svgs/cry-face.svg")
     case "Settings":
       return require("../../assets/svgs/settings-icon.svg")
+    case "LightMode":
+      return require("../../assets/svgs/light-mode-icon.svg")
+    case "DarkMode":
+      return require("../../assets/svgs/dark-mode-icon.svg")
   }
 }

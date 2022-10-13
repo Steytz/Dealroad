@@ -2,6 +2,7 @@ import React, {Dispatch, FC, memo, SetStateAction} from "react"
 import {Pressable, Text, TextStyle, ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
 import {palette} from "../../../theme/palette"
+import spacing from "../../../theme/spacing"
 
 interface Props {
   section: TSupportedSupermarketsElementSection
@@ -11,12 +12,11 @@ interface Props {
 }
 
 const SFButton = (isFocused: boolean): ViewStyle => ({
-  marginHorizontal: 7,
-  borderWidth: 1.5,
-  backgroundColor: isFocused ? palette.blue : "white",
-  paddingHorizontal: 14,
+  marginHorizontal: spacing[0],
+  backgroundColor: isFocused ? palette.red : palette.white,
+  paddingHorizontal: spacing[1],
   borderRadius: 15,
-  paddingVertical: 4,
+  paddingVertical: spacing[0] - 2,
 })
 
 const SFButtonText = (isFocused: boolean): TextStyle => ({
