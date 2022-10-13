@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, memo, SetStateAction} from "react"
+import React, {Dispatch, FC, memo, SetStateAction, useCallback} from "react"
 import {Pressable, Text, TextStyle, ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
 import {palette} from "../../../theme/palette"
@@ -28,10 +28,10 @@ const SFButtonText = (isFocused: boolean): TextStyle => ({
 type THandleButtonPress = () => void
 
 const SectionsTabBarRenderItem: FC<Props> = ({section, setActiveSection, isFocused, handleScrollToIndex}) => {
-  const handleButtonPress: THandleButtonPress = () => {
+  const handleButtonPress: THandleButtonPress = useCallback(() => {
     setActiveSection(section)
     handleScrollToIndex()
-  }
+  }, [])
 
   return (
     <Pressable onPress={handleButtonPress} style={SFButton(isFocused)}>

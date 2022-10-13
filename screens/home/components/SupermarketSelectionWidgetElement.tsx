@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react"
+import React, {FC, memo, useCallback} from "react"
 import {Switch, TextStyle, View, ViewStyle} from "react-native"
 import updateArrayItem from "../../../utils/async-storage/updateArrayItem"
 import {palette} from "../../../theme/palette"
@@ -35,7 +35,7 @@ const SDisplayName: TextStyle = {
   fontWeight: "500",
 }
 
-type TToggleSwitch = (active: boolean, name: string) => void
+type TToggleSwitch = () => void
 
 const SupermarketSelectionWidgetElement: FC<Props> = ({
   logo: {
@@ -47,12 +47,13 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
 }) => {
   const {setSupermarkets} = useSupermarketsContext()
   const {colors} = useThemeContext()
-  const toggleSwitch: TToggleSwitch = async active => {
-    await updateArrayItem("supermarkets", displayName, active ? "add" : "remove")
+
+  const toggleSwitch: TToggleSwitch = useCallback(() => {
+    updateArrayItem("supermarkets", displayName, !activeInStore ? "add" : "remove")
     setSupermarkets(prev => {
-      return active ? [...prev, displayName] : prev.filter(item => item != displayName)
+      return !activeInStore ? [...prev, displayName] : prev.filter(item => item != displayName)
     })
-  }
+  }, [activeInStore, displayName])
 
   return (
     <View style={SContainer}>
@@ -64,7 +65,7 @@ const SupermarketSelectionWidgetElement: FC<Props> = ({
         trackColor={{false: colors.switchTrackOff, true: colors.switchTrackOn}}
         thumbColor={"#fff"}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={() => toggleSwitch(!activeInStore, displayName)}
+        onValueChange={toggleSwitch}
         value={activeInStore}
       />
     </View>

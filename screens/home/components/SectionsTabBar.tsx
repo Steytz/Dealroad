@@ -18,13 +18,10 @@ const STabBarContainer: ViewStyle = {
 const SectionsTabBar: FC<Props> = ({sections, activeSection, setActiveSection}) => {
   const listRef = useRef(null)
 
-  const handleScrollToIndex = useCallback(
-    (index: number) => {
-      // @ts-ignore
-      listRef.current.scrollToIndex({animated: true, index: index, viewPosition: 0.5})
-    },
-    [sections],
-  )
+  const handleScrollToIndex = useCallback((index: number) => {
+    // @ts-ignore
+    listRef.current.scrollToIndex({animated: true, index: index, viewPosition: 0.5})
+  }, [])
 
   return (
     <View style={STabBarContainer}>
