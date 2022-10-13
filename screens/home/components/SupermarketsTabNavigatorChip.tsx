@@ -1,11 +1,12 @@
 import React, {FC} from "react"
-import {ImageStyle, Text, TextStyle, View, ViewStyle} from "react-native"
+import {ImageStyle, TextStyle, View, ViewStyle} from "react-native"
 import {palette} from "../../../theme/palette"
 import SvgIcon from "../../../global-components/icon/SvgIcon"
 import {TIconString} from "../../../global-components/icon/getIcon"
 import {useThemeContext} from "../../../contexts/ThemeContext"
 import {TTheme} from "../../../theme/theme"
 import spacing from "../../../theme/spacing"
+import Text from "../../../global-components/Text/Text"
 
 interface Props {
   focused: boolean
@@ -26,7 +27,6 @@ const SFSupermarketName = (focused: boolean): TextStyle => ({
   marginLeft: spacing[0],
   color: focused ? palette.white : palette.black,
   fontWeight: "500",
-  fontSize: 16,
 })
 
 const SFIcon = (svgDimensions: number): ImageStyle => ({
@@ -46,7 +46,7 @@ const SupermarketsTabNavigatorChip: FC<Props> = ({focused, item}) => {
         iconStyle={SFIcon(svgDimensions)}
         color={settingsColorChange}
       />
-      <Text style={SFSupermarketName(focused)}>{item}</Text>
+      <Text style={SFSupermarketName(focused)} text={item} />
     </View>
   )
 }

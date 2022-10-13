@@ -21,9 +21,9 @@ const useHome: TUseHome = () => {
     const hasOpenedApp = await getItem("hasOpenedApp")
 
     if (!hasOpenedApp) {
-      await setItem("hasOpenedApp", "true")
-      await setItem("supermarkets", [])
-      await setItem("theme", "light")
+      setItem("hasOpenedApp", "true")
+      setItem("supermarkets", [])
+      setItem("theme", "light")
       setHasAppBeenOpened(false)
     }
 

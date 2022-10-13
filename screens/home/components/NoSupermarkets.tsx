@@ -60,8 +60,11 @@ const NoSupermarkets: FC<Props> = ({setIsNoSupermarketComponentActive}) => {
   const {width} = useWindowDimensions()
   const {colors} = useThemeContext()
   const isDisabled = supermarkets.length <= 0
-
   const svgDimension = width / 2.3
+
+  const handleRefreshPress = () => {
+    setIsNoSupermarketComponentActive(false)
+  }
 
   return (
     <Container>
@@ -74,10 +77,7 @@ const NoSupermarkets: FC<Props> = ({setIsNoSupermarketComponentActive}) => {
         }
       />
       <SupermarketSelectionWidget />
-      <Pressable
-        disabled={isDisabled}
-        onPress={() => setIsNoSupermarketComponentActive(false)}
-        style={SFRefreshButton(isDisabled)}>
+      <Pressable disabled={isDisabled} onPress={handleRefreshPress} style={SFRefreshButton(isDisabled)}>
         <Text style={SRefreshButtonText} text="Refresh" />
       </Pressable>
       <DarkModeButton buttonStyle={SDarkModeButton} />

@@ -1,9 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
-type TGetItem = (key: string) => string | {} | Array<unknown>
-type TGetCorrectValue = (
-  value: string | Array<unknown> | {[key: string]: unknown},
-) => string | Array<unknown> | {[key: string]: unknown}
+type TValue = string | {[key: string]: unknown} | Array<unknown> | undefined
+type TGetItem = (key: string) => Promise<TValue>
+type TGetCorrectValue = (value: TValue) => TValue
 
 const getCorrectValue: TGetCorrectValue = value => {
   try {

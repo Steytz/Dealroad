@@ -8,11 +8,11 @@ const updateArrayItem: TUpdateArrayItem = async (keyToUpdate, updateValue, mode)
     const arrayToUpdate = (await getItem(keyToUpdate)) as unknown[]
     switch (mode) {
       case "add":
-        await setItem(keyToUpdate, [...arrayToUpdate, updateValue])
+        setItem(keyToUpdate, [...arrayToUpdate, updateValue])
         break
       case "remove":
         const newArray = arrayToUpdate.filter(item => item != updateValue)
-        await setItem(keyToUpdate, newArray)
+        setItem(keyToUpdate, newArray)
         break
       default:
         console.warn("Please use a supported case add or remove")

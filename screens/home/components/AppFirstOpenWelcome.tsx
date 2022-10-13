@@ -42,12 +42,16 @@ const SDarkModeButton: ViewStyle = {
 }
 
 const AppFirstOpenWelcome: FC<Props> = ({setHasAppBeenOpened}) => {
+  const handleDonePress = () => {
+    setHasAppBeenOpened(true)
+  }
+
   return (
     <Container>
       <Text style={SWelcomeHeader} text={"Welcome to Dealroad,\nnever buy expensive\ngroceries again."} />
       <Text style={SWelcomeSubText} text={"Please add some supermarkets from\nour supported list."} />
       <SupermarketSelectionWidget />
-      <Pressable onPress={() => setHasAppBeenOpened(true)} style={SDoneBtn}>
+      <Pressable onPress={handleDonePress} style={SDoneBtn}>
         <Text style={SDoneBtnText} text="Done" />
       </Pressable>
       <DarkModeButton buttonStyle={SDarkModeButton} />
