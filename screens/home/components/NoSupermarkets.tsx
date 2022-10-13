@@ -1,73 +1,87 @@
 import React, {Dispatch, FC, SetStateAction} from "react"
-import {Pressable, Text, TextStyle, useWindowDimensions, View, ViewStyle} from "react-native"
+import {ImageStyle, Pressable, TextStyle, useWindowDimensions, ViewStyle} from "react-native"
 import SupermarketSelectionWidget from "./SupermarketSelectionWidget"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
 import SvgIcon from "../../../global-components/icon/SvgIcon"
 import {palette} from "../../../theme/palette"
+import Container from "../../../global-components/Container/Container"
+import {useThemeContext} from "../../../contexts/ThemeContext"
+import Text from "../../../global-components/Text/Text"
+import DarkModeButton from "./DarkModeButton"
+import spacing from "../../../theme/spacing"
 
 interface Props {
   setIsNoSupermarketComponentActive: Dispatch<SetStateAction<boolean>>
 }
 
-const SContainer: ViewStyle = {
-  flex: 1,
-  paddingHorizontal: 14,
-}
+const SFIcon = (svgDimension: number): ImageStyle => ({
+  width: svgDimension,
+  height: svgDimension,
+  alignSelf: "center",
+  marginTop: spacing[6],
+})
 
 const SHeadingText: TextStyle = {
   color: palette.red,
   fontSize: 24,
   fontWeight: "bold",
   textAlign: "center",
-  marginTop: 21,
+  marginTop: spacing[2],
 }
 
 const SSubText: TextStyle = {
-  fontSize: 16,
   alignSelf: "center",
-  color: palette.black,
-  marginTop: 14,
+  marginTop: spacing[1],
 }
 
-const SRefreshButton: ViewStyle = {
+const SFRefreshButton = (isDisabled: boolean): ViewStyle => ({
   backgroundColor: palette.blue,
   alignSelf: "center",
-  paddingHorizontal: 35,
-  paddingVertical: 7,
+  paddingHorizontal: spacing[4],
+  paddingVertical: spacing[0],
   borderRadius: 15,
-  marginTop: 21,
-}
+  marginTop: spacing[2],
+  opacity: isDisabled ? 0.5 : 1,
+})
 
 const SRefreshButtonText: TextStyle = {
-  color: palette.black,
   fontSize: 18,
   fontWeight: "500",
+}
+
+const SDarkModeButton: ViewStyle = {
+  position: "absolute",
+  top: 20,
+  right: 20,
 }
 
 const NoSupermarkets: FC<Props> = ({setIsNoSupermarketComponentActive}) => {
   const {supermarkets} = useSupermarketsContext()
   const {width} = useWindowDimensions()
+  const {colors} = useThemeContext()
+  const isDisabled = supermarkets.length <= 0
+
   const svgDimension = width / 2.3
 
   return (
-    <View style={SContainer}>
-      <SvgIcon
-        iconStyle={{width: svgDimension, height: svgDimension, alignSelf: "center", marginTop: 49}}
-        iconString="CryFace"
+    <Container>
+      <SvgIcon iconStyle={SFIcon(svgDimension)} iconString="CryFace" color={colors.svg} />
+      <Text style={SHeadingText} text="You are missing out on deals" />
+      <Text
+        style={SSubText}
+        text={
+          "Add some supermarkets from our\nsupported list, and when ready\nplease press the refresh button."
+        }
       />
-      <Text style={SHeadingText}>You are missing out on deals</Text>
-      <Text style={SSubText}>
-        Add some supermarkets from our{"\n"}supported list, and when ready{"\n"}please press the refresh
-        button.
-      </Text>
       <SupermarketSelectionWidget />
       <Pressable
-        disabled={supermarkets.length <= 0}
+        disabled={isDisabled}
         onPress={() => setIsNoSupermarketComponentActive(false)}
-        style={SRefreshButton}>
-        <Text style={SRefreshButtonText}>Refresh</Text>
+        style={SFRefreshButton(isDisabled)}>
+        <Text style={SRefreshButtonText} text="Refresh" />
       </Pressable>
-    </View>
+      <DarkModeButton buttonStyle={SDarkModeButton} />
+    </Container>
   )
 }
 

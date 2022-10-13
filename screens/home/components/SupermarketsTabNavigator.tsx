@@ -6,6 +6,7 @@ import SupermarketsTabNavigatorChip from "./SupermarketsTabNavigatorChip"
 import SupermarketsTab from "./SupermarketsTab"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SettingsTab from "./SettingsTab"
+import {useThemeContext} from "../../../contexts/ThemeContext"
 
 type THomeTabStack = {[key: string]: {}}
 
@@ -15,6 +16,7 @@ interface Props {}
 
 const SupermarketsTabNavigator: FC<Props> = ({}) => {
   const {supermarkets} = useSupermarketsContext()
+  const {colors} = useThemeContext()
   const [noSupermarkets, setNoSupermarkets] = useState<boolean>(supermarkets.length <= 0)
 
   if (noSupermarkets) {
@@ -22,7 +24,13 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
   }
 
   return (
-    <Tab.Navigator screenOptions={{tabBarScrollEnabled: true, tabBarItemStyle: {width: 120}}}>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarScrollEnabled: true,
+        tabBarItemStyle: {width: 120},
+        tabBarStyle: {backgroundColor: colors.supermarketsTabNavigator},
+        swipeEnabled: false,
+      }}>
       {supermarkets.map((supermarket, index) => (
         <Tab.Screen
           key={index}

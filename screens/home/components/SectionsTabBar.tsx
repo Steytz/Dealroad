@@ -2,7 +2,7 @@ import React, {Dispatch, FC, memo, SetStateAction, useCallback, useRef} from "re
 import {FlatList, View, ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
 import SectionsTabBarRenderItem from "./SectionsTabBarRenderItem"
-import {palette} from "../../../theme/palette"
+import spacing from "../../../theme/spacing"
 
 interface Props {
   sections: TSupportedSupermarketsElementSection[]
@@ -12,8 +12,7 @@ interface Props {
 
 const STabBarContainer: ViewStyle = {
   flex: 0,
-  backgroundColor: palette.white,
-  marginVertical: 7,
+  marginVertical: spacing[0] + 3,
 }
 
 const SectionsTabBar: FC<Props> = ({sections, activeSection, setActiveSection}) => {
