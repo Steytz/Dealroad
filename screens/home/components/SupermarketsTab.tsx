@@ -2,7 +2,7 @@ import React, {FC, memo} from "react"
 import {ViewStyle} from "react-native"
 import {TSupportedSupermarketsElementSection} from "../supportedSupermarkets"
 import SupermarketsTabSectionNavigator from "./SupermarketsTabSectionNavigator"
-import Container from "../../../global-components/Container/Container"
+import Container from "../../../global-components/container/Container"
 import SupermarketsWebview from "./SupermarketsWebview"
 
 interface Props {

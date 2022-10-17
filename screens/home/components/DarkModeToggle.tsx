@@ -1,7 +1,7 @@
 import React, {FC, useCallback} from "react"
 import {Switch, TextStyle, View, ViewStyle} from "react-native"
 import {handleDarkModeToggle, useThemeContext} from "../../../contexts/ThemeContext"
-import Text from "../../../global-components/Text/Text"
+import Text from "../../../global-components/text/Text"
 import {setItem} from "../../../utils/async-storage/setItem"
 import spacing from "../../../theme/spacing"
 

@@ -34,7 +34,9 @@ const useHome: TUseHome = () => {
       const supermarkets = await getItem("supermarkets")
       if (supermarkets) setSupermarkets(supermarkets as string[])
     }
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 300)
   }
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import SupermarketSelectionWidget from "./SupermarketSelectionWidget"
 import {useThemeContext} from "../../../contexts/ThemeContext"
 import {TTheme} from "../../../theme/theme"
 import spacing from "../../../theme/spacing"
-import Text from "../../../global-components/Text/Text"
+import Text from "../../../global-components/text/Text"
 
 interface Props {}
 
