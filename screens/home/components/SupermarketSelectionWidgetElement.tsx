@@ -5,7 +5,7 @@ import {palette} from "../../../theme/palette"
 import SvgIcon from "../../../global-components/icon/SvgIcon"
 import {TSupportedSupermarketsElementLogo} from "../supportedSupermarkets"
 import {useSupermarketsContext} from "../../../contexts/SupermarketsContext"
-import Text from "../../../global-components/Text/Text"
+import Text from "../../../global-components/text/Text"
 import {useThemeContext} from "../../../contexts/ThemeContext"
 import spacing from "../../../theme/spacing"
 

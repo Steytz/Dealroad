@@ -11,6 +11,7 @@ export type TTheme = {
   supermarketsTabNavigatorChipFocus: string
   darkModeButton: string
   darkModeButtonBorder: string
+  loading: string
 }
 
 type TThemes = {
@@ -30,6 +31,7 @@ export const theme: TThemes = {
     supermarketsTabNavigatorChipFocus: palette.blue,
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.black,
+    loading: palette.white,
   },
   dark: {
     container: palette.black,
@@ -42,5 +44,6 @@ export const theme: TThemes = {
     supermarketsTabNavigatorChipFocus: palette.black,
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.white,
+    loading: palette.red,
   },
 }
