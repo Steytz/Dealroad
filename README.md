@@ -8,7 +8,7 @@ Dealroad is a tool app which makes it easier to view current deals on multiple s
 https://github.com/Steytz/Dealroad/releases/download/v.0.1.0/Dealroad.apk
 
 ## Future plans ##
-- Test iOS support, fix https://github.com/oblador/react-native-vector-image in ios and add non app store installation instructions for iOS
+- Test iOS support, fix SVG's in ios and add non app store installation instructions for iOS
 - Optimize supported supermarkets(only present relevant sections & remove non necessary)
 - Add more supermarkets/stores(Kaufland, Penny, Netto, Edeka, Dm, ...)
 - Optimize subsections(E.g Aldi)
