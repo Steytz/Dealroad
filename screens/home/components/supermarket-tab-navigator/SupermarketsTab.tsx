@@ -1,6 +1,6 @@
 import React, {FC, memo} from "react"
 import {ViewStyle} from "react-native"
-import SupermarketsTabSectionNavigator from "../sections-tab-bar/SupermarketsTabSectionNavigator"
+import SectionsTabNavigator from "../sections-tab-bar/SectionsTabNavigator"
 import {Container} from "@generalComps"
 import {TSupportedSupermarketsElementSection} from "../../supportedSupermarkets"
 import SupermarketsWebview from "./SupermarketsWebview"
@@ -17,7 +17,7 @@ const SupermarketsTab: FC<Props> = ({sections}) => {
   return (
     <Container style={SCustomContainer}>
       {sections.length > 1 ? (
-        <SupermarketsTabSectionNavigator sections={sections} />
+        <SectionsTabNavigator sections={sections} />
       ) : (
         <SupermarketsWebview uri={sections[0].url} />
       )}
