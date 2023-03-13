@@ -12,6 +12,23 @@ type TSupportedSupermarketsElement = {
 }
 export type TSupportedSupermarkets = {[key: string]: TSupportedSupermarketsElement}
 
+type TGetLidlInitialUrl = () => string
+
+const getLidlInitialUrl: TGetLidlInitialUrl = () => {
+  const day: number = new Date().getDay()
+
+  switch (day) {
+    case 1:
+    case 2:
+    case 3:
+      return "https://www.lidl.de/c/billiger-montag/a10006065"
+    case 4:
+      return "https://www.lidl.de/c/billiger-donnerstag/a10006356"
+    default:
+      return "https://www.lidl.de/c/billiger-wochenendlich/a10006502"
+  }
+}
+
 const supportedSupermarkets: TSupportedSupermarkets = {
   Rewe: {
     displayName: "Rewe",
@@ -21,7 +38,7 @@ const supportedSupermarkets: TSupportedSupermarkets = {
   Lidl: {
     displayName: "Lidl",
     logo: {logoName: "Lidl", dimensions: [28, 28]},
-    sections: [{title: "Angebote Übersicht", url: "https://www.lidl.de/c/billiger-wochenendlich/a10006502"}],
+    sections: [{title: "Angebote Übersicht", url: getLidlInitialUrl()}],
   },
   "Aldi S": {
     displayName: "Aldi S",
