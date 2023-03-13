@@ -1,4 +1,5 @@
-import {TIconString} from "../../global-components/icon/getIcon"
+import {TIconString} from "@generalComps"
+
 export type TSupportedSupermarketsElementLogo = {logoName: TIconString; dimensions: number[]}
 export type TSupportedSupermarketsElementSection = {
   title: string

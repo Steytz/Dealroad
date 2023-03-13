@@ -3,7 +3,7 @@ import {setItem} from "./setItem"
 
 type TUpdateArrayItem = (keyToUpdate: string, updateValue: unknown, mode: "add" | "remove") => void
 
-const updateArrayItem: TUpdateArrayItem = async (keyToUpdate, updateValue, mode) => {
+export const updateArrayItem: TUpdateArrayItem = async (keyToUpdate, updateValue, mode) => {
   try {
     const arrayToUpdate = (await getItem(keyToUpdate)) as unknown[]
     switch (mode) {
@@ -21,5 +21,3 @@ const updateArrayItem: TUpdateArrayItem = async (keyToUpdate, updateValue, mode)
     console.error(e)
   }
 }
-
-export default updateArrayItem

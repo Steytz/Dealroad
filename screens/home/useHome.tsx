@@ -1,8 +1,6 @@
-import {Dispatch, SetStateAction, useEffect, useState} from "react"
-import {getItem} from "../../utils/async-storage/getItem"
-import {setItem} from "../../utils/async-storage/setItem"
-import {useSupermarketsContext} from "../../contexts/SupermarketsContext"
-import {TMode, useThemeContext} from "../../contexts/ThemeContext"
+import {Dispatch, SetStateAction, useCallback, useEffect, useState} from "react"
+import {TMode, useSupermarketsContext, useThemeContext} from "@contexts"
+import {getItem, setItem} from "@utils"
 
 type TUseHome = () => {
   hasAppBeenOpened: undefined | boolean
@@ -17,7 +15,7 @@ const useHome: TUseHome = () => {
   const {supermarkets, setSupermarkets} = useSupermarketsContext()
   const {setMode} = useThemeContext()
 
-  const handleAppOpen: THandleAppOpen = async () => {
+  const handleAppOpen: THandleAppOpen = useCallback(async () => {
     const hasOpenedApp = await getItem("hasOpenedApp")
 
     if (!hasOpenedApp) {
@@ -37,7 +35,7 @@ const useHome: TUseHome = () => {
     setTimeout(() => {
       setIsLoading(false)
     }, 300)
-  }
+  }, [supermarkets.length])
 
   useEffect(() => {
     if (hasAppBeenOpened === undefined) {

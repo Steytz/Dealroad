@@ -1,6 +1,6 @@
 import React, {createContext, Dispatch, FC, SetStateAction, useContext, useState} from "react"
-import {theme, TTheme} from "../theme/theme"
-import {TSetItem} from "../utils/async-storage/setItem"
+import {theme, TTheme} from "@theme"
+import {TSetItem} from "@utils"
 
 export type TMode = "light" | "dark"
 

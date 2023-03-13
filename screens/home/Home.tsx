@@ -1,10 +1,9 @@
 import React, {FC} from "react"
-import SupermarketsTabNavigator from "./components/SupermarketsTabNavigator"
-import useHome from "./useHome"
-import AppFirstOpenWelcome from "./components/AppFirstOpenWelcome"
-import Loading from "../../global-components/loading/Loading"
 import {ViewStyle} from "react-native"
-import {palette} from "../../theme/palette"
+import {palette} from "@theme"
+import useHome from "./useHome"
+import {AppFirstOpenWelcome, SupermarketsTabNavigator} from "./components"
+import {Loading} from "@generalComps"
 
 const SLoading: ViewStyle = {
   backgroundColor: palette.blue,

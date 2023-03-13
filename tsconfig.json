@@ -8,6 +8,14 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "strict": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@contexts": ["contexts"],
+      "@generalComps": ["general-components"],
+      "@theme": ["theme"],
+      "@utils": ["utils"],
+      "@screens": ["screens"]
+    }
   }
 }
