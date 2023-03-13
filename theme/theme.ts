@@ -12,6 +12,7 @@ export type TTheme = {
   darkModeButton: string
   darkModeButtonBorder: string
   loading: string
+  sectionsTabNavigator: string
 }
 
 type TThemes = {
@@ -32,6 +33,7 @@ export const theme: TThemes = {
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.black,
     loading: palette.white,
+    sectionsTabNavigator: palette.white,
   },
   dark: {
     container: palette.black,
@@ -45,5 +47,6 @@ export const theme: TThemes = {
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.white,
     loading: palette.red,
+    sectionsTabNavigator: palette.black,
   },
 }

@@ -1,4 +1,4 @@
-import React, {FC} from "react"
+import React, {FC, memo} from "react"
 import {ImageStyle, TextStyle, View, ViewStyle} from "react-native"
 import {palette, spacing, TTheme} from "@theme"
 import {SvgIcon, Text, TIconString} from "@generalComps"
@@ -47,4 +47,4 @@ const SupermarketsTabNavigatorChip: FC<Props> = ({focused, item}) => {
   )
 }
 
-export default SupermarketsTabNavigatorChip
+export default memo(SupermarketsTabNavigatorChip)
