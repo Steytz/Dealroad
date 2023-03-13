@@ -1,8 +1,6 @@
 import {Dispatch, SetStateAction, useCallback, useEffect, useState} from "react"
-import {getItem} from "../../utils/async-storage/getItem"
-import {setItem} from "../../utils/async-storage/setItem"
-import {useSupermarketsContext} from "../../contexts/SupermarketsContext"
-import {TMode, useThemeContext} from "../../contexts/ThemeContext"
+import {TMode, useSupermarketsContext, useThemeContext} from "@contexts"
+import {getItem, setItem} from "@utils"
 
 type TUseHome = () => {
   hasAppBeenOpened: undefined | boolean
