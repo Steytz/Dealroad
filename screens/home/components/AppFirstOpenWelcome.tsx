@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction} from "react"
+import React, {Dispatch, FC, SetStateAction, useCallback} from "react"
 import {Pressable, TextStyle, ViewStyle} from "react-native"
 import SupermarketSelectionWidget from "./SupermarketSelectionWidget"
 import {palette} from "../../../theme/palette"
@@ -42,9 +42,9 @@ const SDarkModeButton: ViewStyle = {
 }
 
 const AppFirstOpenWelcome: FC<Props> = ({setHasAppBeenOpened}) => {
-  const handleDonePress = () => {
+  const handleDonePress = useCallback(() => {
     setHasAppBeenOpened(true)
-  }
+  }, [])
 
   return (
     <Container>

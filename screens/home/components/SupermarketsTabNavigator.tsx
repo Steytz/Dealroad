@@ -7,12 +7,22 @@ import SupermarketsTab from "./SupermarketsTab"
 import supportedSupermarkets from "../supportedSupermarkets"
 import SettingsTab from "./SettingsTab"
 import {useThemeContext} from "../../../contexts/ThemeContext"
+import {ViewStyle} from "react-native"
+import {TTheme} from "../../../theme/theme"
 
 type THomeTabStack = {[key: string]: {}}
 
 const Tab = createMaterialTopTabNavigator<THomeTabStack>()
 
 interface Props {}
+
+const STabBarItemStyle: ViewStyle = {
+  width: 120,
+}
+
+const SFTabBarStyle = (colors: TTheme): ViewStyle => ({
+  backgroundColor: colors.supermarketsTabNavigator,
+})
 
 const SupermarketsTabNavigator: FC<Props> = ({}) => {
   const {supermarkets} = useSupermarketsContext()
@@ -27,8 +37,8 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
     <Tab.Navigator
       screenOptions={{
         tabBarScrollEnabled: true,
-        tabBarItemStyle: {width: 120},
-        tabBarStyle: {backgroundColor: colors.supermarketsTabNavigator},
+        tabBarItemStyle: STabBarItemStyle,
+        tabBarStyle: SFTabBarStyle(colors),
         swipeEnabled: false,
       }}>
       {supermarkets.map((supermarket, index) => (
