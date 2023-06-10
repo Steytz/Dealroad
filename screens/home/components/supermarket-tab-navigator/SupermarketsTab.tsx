@@ -19,7 +19,7 @@ const SupermarketsTab: FC<Props> = ({sections}) => {
       {sections.length > 1 ? (
         <SectionsTabNavigator sections={sections} />
       ) : (
-        <SupermarketsWebview uri={sections[0].url} />
+        <SupermarketsWebview uri={sections[0].url} selectorRemoveList={sections[0].selectorsToRemove} />
       )}
     </Container>
   )
