@@ -30,7 +30,9 @@ const SectionsTabNavigator: FC<Props> = ({sections}) => {
         <Tab.Screen
           key={index}
           name={section.title}
-          children={() => <SupermarketsWebview uri={section.url} />}
+          children={() => (
+            <SupermarketsWebview uri={section.url} selectorRemoveList={section.selectorsToRemove} />
+          )}
           options={{
             title: ({focused}) => <SectionsTabBarNavigationChip label={section.title} isFocused={focused} />,
             tabBarIndicator: () => null,
