@@ -35,6 +35,7 @@ const baseLidlSelectors =
 
 const baseAldiSelectors =
   "#onetrust-banner-sdk, .onetrust-pc-dark-filter, #onetrust-consent-sdk, header.newMegaMenu, footer, .hero-slider__wrap"
+
 const supportedSupermarkets: TSupportedSupermarkets = {
   Rewe: {
     displayName: "Rewe",
