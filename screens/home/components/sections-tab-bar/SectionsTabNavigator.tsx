@@ -9,6 +9,7 @@ import SectionsTabBarNavigationChip from "./SectionsTabBarNavigationChip"
 
 interface Props {
   sections: TSupportedSupermarketsElementSection[]
+  optimized: boolean
 }
 
 type TSectionTabStack = {[key: string]: {}}
@@ -21,7 +22,7 @@ const SFTabBarStyle = (colors: TTheme): ViewStyle => ({
   backgroundColor: colors.sectionsTabNavigator,
 })
 
-const SectionsTabNavigator: FC<Props> = ({sections}) => {
+const SectionsTabNavigator: FC<Props> = ({sections, optimized}) => {
   const {colors} = useThemeContext()
 
   const sectionsRenderer = useMemo(
@@ -31,7 +32,11 @@ const SectionsTabNavigator: FC<Props> = ({sections}) => {
           key={index}
           name={section.title}
           children={() => (
-            <SupermarketsWebview uri={section.url} selectorRemoveList={section.selectorsToRemove} />
+            <SupermarketsWebview
+              uri={section.url}
+              selectorRemoveList={section.selectorsToRemove}
+              optimized={optimized}
+            />
           )}
           options={{
             title: ({focused}) => <SectionsTabBarNavigationChip label={section.title} isFocused={focused} />,

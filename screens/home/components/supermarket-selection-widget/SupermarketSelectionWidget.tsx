@@ -12,7 +12,8 @@ const SContainer: ViewStyle = {
 }
 
 const SupermarketSelectionWidget: FC<Props> = ({}) => {
-  const {supermarkets} = useSupermarketsContext()
+  const {supermarkets, optimizedSupermarkets} = useSupermarketsContext()
+
   return (
     <View style={SContainer}>
       {Object.values(supportedSupermarkets).map((supermarket, index) => (
@@ -21,6 +22,7 @@ const SupermarketSelectionWidget: FC<Props> = ({}) => {
           logo={supermarket.logo}
           displayName={supermarket.displayName}
           activeInStore={supermarkets.includes(supermarket.displayName)}
+          optimized={optimizedSupermarkets.includes(supermarket.displayName)}
         />
       ))}
     </View>
