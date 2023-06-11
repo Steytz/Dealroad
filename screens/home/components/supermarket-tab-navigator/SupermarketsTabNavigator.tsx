@@ -24,7 +24,7 @@ const SFTabBarStyle = (colors: TTheme): ViewStyle => ({
 })
 
 const SupermarketsTabNavigator: FC<Props> = ({}) => {
-  const {supermarkets} = useSupermarketsContext()
+  const {supermarkets, optimizedSupermarkets} = useSupermarketsContext()
   const {colors} = useThemeContext()
   const [noSupermarkets, setNoSupermarkets] = useState<boolean>(supermarkets.length <= 0)
 
@@ -44,7 +44,12 @@ const SupermarketsTabNavigator: FC<Props> = ({}) => {
         <Tab.Screen
           key={index}
           name={supermarket}
-          children={() => <SupermarketsTab sections={supportedSupermarkets[supermarket].sections} />}
+          children={() => (
+            <SupermarketsTab
+              sections={supportedSupermarkets[supermarket].sections}
+              optimized={optimizedSupermarkets.includes(supermarket)}
+            />
+          )}
           options={{
             title: ({focused}) => <SupermarketsTabNavigatorChip item={supermarket} focused={focused} />,
             tabBarIndicator: () => null,

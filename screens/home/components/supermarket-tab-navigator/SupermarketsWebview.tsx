@@ -1,12 +1,14 @@
-import React, {FC, memo, useCallback, useState} from "react"
+import React, {FC, memo, useCallback, useRef, useState} from "react"
 import WebView, {WebViewMessageEvent} from "react-native-webview"
 import {Loading} from "@generalComps"
 import {ViewStyle} from "react-native"
 import {useThemeContext} from "@contexts"
+import {useUpdateEffect} from "@utils"
 
 interface Props {
   uri: string
   selectorRemoveList?: string
+  optimized: boolean
 }
 
 const SLoading: ViewStyle = {
@@ -24,9 +26,10 @@ const handleUnwantedElementsRemoval = (selectorRemoveList: string) => `
   true;
   `
 
-const SupermarketsWebview: FC<Props> = ({uri, selectorRemoveList}) => {
+const SupermarketsWebview: FC<Props> = ({uri, selectorRemoveList, optimized}) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const {mode} = useThemeContext()
+  const webviewRef = useRef<WebView>(null)
   const forceDarkMode = mode === "dark"
 
   const onWebviewLoad = useCallback(() => {
@@ -37,12 +40,19 @@ const SupermarketsWebview: FC<Props> = ({uri, selectorRemoveList}) => {
     if (event.nativeEvent.data === "done") onWebviewLoad()
   }, [])
 
-  const injectedJS = selectorRemoveList ? handleUnwantedElementsRemoval(selectorRemoveList) : undefined
-  const onLoad = selectorRemoveList ? undefined : onWebviewLoad
+  const injectedJS =
+    selectorRemoveList && optimized ? handleUnwantedElementsRemoval(selectorRemoveList) : undefined
+  const onLoad = optimized ? undefined : onWebviewLoad
+
+  useUpdateEffect(() => {
+    setIsLoading(true)
+    webviewRef?.current?.reload()
+  }, [optimized])
 
   return (
     <>
       <WebView
+        ref={webviewRef}
         forceDarkOn={forceDarkMode}
         originWhitelist={["*"]}
         source={{uri: uri}}
