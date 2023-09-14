@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction, useCallback, useEffect, useState} from "react"
-import {TMode, useSupermarketsContext, useThemeContext} from "@contexts"
+import {TCustomItem, TMode, useItemsContext, useThemeContext} from "@contexts"
 import {getItem, setItem} from "@utils"
 
 type TUseHome = () => {
@@ -12,7 +12,7 @@ type THandleAppOpen = () => Promise<void>
 const useHome: TUseHome = () => {
   const [hasAppBeenOpened, setHasAppBeenOpened] = useState<boolean>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const {supermarkets, setSupermarkets, setOptimizedSupermarkets} = useSupermarketsContext()
+  const {supermarkets, setSupermarkets, setOptimizedItems, setCustomItems} = useItemsContext()
   const {setMode} = useThemeContext()
 
   const handleAppOpen: THandleAppOpen = useCallback(async () => {
@@ -21,7 +21,8 @@ const useHome: TUseHome = () => {
     if (!hasOpenedApp) {
       setItem("hasOpenedApp", "true")
       setItem("supermarkets", [])
-      setItem("optimizedSupermarkets", [])
+      setItem("customItems", [])
+      setItem("optimizedItems", [])
       setItem("theme", "light")
       setHasAppBeenOpened(false)
     }
@@ -30,10 +31,19 @@ const useHome: TUseHome = () => {
       const theme = await getItem("theme")
       setMode(theme as TMode)
       setHasAppBeenOpened(true)
-      const supermarkets = await getItem("supermarkets")
-      const optimizedSupermarkets = await getItem("optimizedSupermarkets")
-      if (supermarkets) setSupermarkets(supermarkets as string[])
-      if (optimizedSupermarkets) setOptimizedSupermarkets(optimizedSupermarkets as string[])
+      const supermarketsFromStorage = await getItem("supermarkets")
+      const customItems = await getItem("customItems")
+      const optimizedItems = await getItem("optimizedItems")
+
+      if (supermarketsFromStorage) {
+        setSupermarkets(supermarketsFromStorage as string[])
+      }
+      if (customItems) {
+        setCustomItems(customItems as TCustomItem[])
+      }
+      if (optimizedItems) {
+        setOptimizedItems(optimizedItems as string[])
+      }
     }
     setTimeout(() => {
       setIsLoading(false)

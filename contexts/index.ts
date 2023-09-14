@@ -1,2 +1,2 @@
-export * from "./SupermarketsContext"
+export * from "./ItemsContext"
 export * from "./ThemeContext"

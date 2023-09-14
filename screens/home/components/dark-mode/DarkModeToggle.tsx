@@ -31,13 +31,7 @@ const DarkModeToggle: FC<Props> = ({}) => {
   return (
     <View style={SContainer}>
       <Text style={SText} text="Toggle Dark Mode" />
-      <Switch
-        trackColor={{false: colors.switchTrackOff, true: colors.switchTrackOn}}
-        thumbColor={"#fff"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={handleSwitch}
-        value={isDarkMode}
-      />
+      <Switch trackColor={{false: colors.switchTrackOff, true: colors.switchTrackOn}} thumbColor={"#fff"} ios_backgroundColor="#3e3e3e" onValueChange={handleSwitch} value={isDarkMode} />
     </View>
   )
 }

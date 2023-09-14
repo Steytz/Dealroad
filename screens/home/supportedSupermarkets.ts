@@ -1,15 +1,15 @@
 import {TIconString} from "@generalComps"
 
-export type TSupportedSupermarketsElementLogo = {logoName: TIconString; dimensions: number[]}
-export type TSupportedSupermarketsElementSection = {
+export type TItemsElementLogo = {logoName: TIconString; dimensions: number[]}
+export type TItemsElementSection = {
   title: string
   url: string
   selectorsToRemove?: string
 }
 type TSupportedSupermarketsElement = {
   displayName: string
-  logo: TSupportedSupermarketsElementLogo
-  sections: TSupportedSupermarketsElementSection[]
+  logo: TItemsElementLogo
+  sections: TItemsElementSection[]
 }
 
 export type TSupportedSupermarkets = {[key: string]: TSupportedSupermarketsElement}
@@ -33,8 +33,7 @@ const getLidlInitialUrl: TGetLidlInitialUrl = () => {
 const baseLidlSelectors =
   "#onetrust-banner-sdk, .n-header-root, .ACampaignTeaser__ImageWrapper, .onetrust-pc-dark-filter, #onetrust-consent-sdk, #ATheHeroStage__TabPanel79798381, #ATheHeroStage__TabPanel79716841, .n-footer__bottom-banner-mobile-content-wrapper, #ATheHeroStage__TabPanel79716842, .n-footer, leaflets-teaser"
 
-const baseAldiSelectors =
-  "#onetrust-banner-sdk, .onetrust-pc-dark-filter, #onetrust-consent-sdk, header.newMegaMenu, footer, .hero-slider__wrap"
+const baseAldiSelectors = "#onetrust-banner-sdk, .onetrust-pc-dark-filter, #onetrust-consent-sdk, header.newMegaMenu, footer, .hero-slider__wrap"
 
 const supportedSupermarkets: TSupportedSupermarkets = {
   Rewe: {
@@ -44,8 +43,7 @@ const supportedSupermarkets: TSupportedSupermarkets = {
       {
         title: "Nationale Angebote",
         url: "https://www.rewe.de/angebote/nationale-angebote/",
-        selectorsToRemove:
-          ".sos-market-info-fallback, .sos-teaser, div.svelte-1q376oa, .sos-footnotes, .newsletterTeaser, .rdf-footer ",
+        selectorsToRemove: ".sos-market-info-fallback, .sos-teaser, div.svelte-1q376oa, .sos-footnotes, .newsletterTeaser, .rdf-footer ",
       },
     ],
   },

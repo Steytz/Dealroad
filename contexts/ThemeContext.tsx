@@ -10,11 +10,7 @@ type TThemeContext = {
   colors: TTheme
 }
 
-type THandleDarkModeToggle = (
-  mode: TMode,
-  setMode: Dispatch<SetStateAction<TMode>>,
-  setItem: TSetItem,
-) => void
+type THandleDarkModeToggle = (mode: TMode, setMode: Dispatch<SetStateAction<TMode>>, setItem: TSetItem) => void
 
 const ThemeContext = createContext<TThemeContext>({
   mode: "light",

@@ -9,7 +9,7 @@ interface Props {
   style?: ViewStyle
 }
 
-type TLoadingSource = "price-tag" | "cart"
+type TLoadingSource = "price-tag" | "cart" | "ghost"
 type TGetLoadingSource = (name: TLoadingSource) => string | AnimationObject | {uri: string}
 
 const getLoadingSource: TGetLoadingSource = name => {
@@ -28,9 +28,7 @@ const SFLoading = (colors: TTheme, styleOverride?: ViewStyle): ViewStyle => ({
 
 const Loading: FC<Props> = ({style, loadingItemName}) => {
   const {colors} = useThemeContext()
-  return (
-    <LottieView style={SFLoading(colors, style)} source={getLoadingSource(loadingItemName)} autoPlay loop />
-  )
+  return <LottieView style={SFLoading(colors, style)} source={getLoadingSource(loadingItemName)} autoPlay loop />
 }
 
 export default Loading
