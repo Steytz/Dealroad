@@ -1,14 +1,14 @@
 import React, {FC, useMemo} from "react"
 import {ViewStyle} from "react-native"
-import {TSupportedSupermarketsElementSection} from "../.."
-import SupermarketsWebview from "../supermarket-tab-navigator/SupermarketsWebview"
+import {TItemsElementSection} from "../.."
+import SupermarketsWebview from "../item-tab-navigator/ItemsWebview"
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs"
 import {useThemeContext} from "@contexts"
 import {TTheme} from "@theme"
 import SectionsTabBarNavigationChip from "./SectionsTabBarNavigationChip"
 
 interface Props {
-  sections: TSupportedSupermarketsElementSection[]
+  sections: TItemsElementSection[]
   optimized: boolean
 }
 
@@ -22,6 +22,8 @@ const SFTabBarStyle = (colors: TTheme): ViewStyle => ({
   backgroundColor: colors.sectionsTabNavigator,
 })
 
+const getSectionTabNavTitle = (focused: boolean, title: string) => <SectionsTabBarNavigationChip label={title} isFocused={focused} />
+
 const SectionsTabNavigator: FC<Props> = ({sections, optimized}) => {
   const {colors} = useThemeContext()
 
@@ -31,20 +33,14 @@ const SectionsTabNavigator: FC<Props> = ({sections, optimized}) => {
         <Tab.Screen
           key={index}
           name={section.title}
-          children={() => (
-            <SupermarketsWebview
-              uri={section.url}
-              selectorRemoveList={section.selectorsToRemove}
-              optimized={optimized}
-            />
-          )}
+          children={() => <SupermarketsWebview uri={section.url} selectorRemoveList={section.selectorsToRemove} optimized={optimized} />}
           options={{
-            title: ({focused}) => <SectionsTabBarNavigationChip label={section.title} isFocused={focused} />,
+            title: ({focused}: {focused: boolean}) => getSectionTabNavTitle(focused, section.title),
             tabBarIndicator: () => null,
           }}
         />
       )),
-    [sections.length],
+    [optimized, sections],
   )
 
   return (

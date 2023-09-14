@@ -15,7 +15,8 @@
       "@generalComps": ["general-components"],
       "@theme": ["theme"],
       "@utils": ["utils"],
-      "@screens": ["screens"]
+      "@screens": ["screens"],
+      "@assets": ["assets"]
     }
   }
 }

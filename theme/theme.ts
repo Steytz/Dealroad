@@ -6,13 +6,14 @@ export type TTheme = {
   svg: string
   switchTrackOff: string
   switchTrackOn: string
-  supermarketsTabNavigator: string
-  supermarketsTabNavigatorChip: string
-  supermarketsTabNavigatorChipFocus: string
+  itemsTabNavigator: string
+  itemsTabNavigatorChip: string
+  itemsTabNavigatorChipFocus: string
   darkModeButton: string
   darkModeButtonBorder: string
   loading: string
   sectionsTabNavigator: string
+  addButton: string
 }
 
 type TThemes = {
@@ -27,13 +28,14 @@ export const theme: TThemes = {
     svg: palette.black,
     switchTrackOff: palette.black,
     switchTrackOn: palette.blue,
-    supermarketsTabNavigator: palette.white,
-    supermarketsTabNavigatorChip: palette.white,
-    supermarketsTabNavigatorChipFocus: palette.blue,
+    itemsTabNavigator: palette.white,
+    itemsTabNavigatorChip: palette.white,
+    itemsTabNavigatorChipFocus: palette.blue,
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.black,
     loading: palette.white,
     sectionsTabNavigator: palette.white,
+    addButton: palette.red,
   },
   dark: {
     container: palette.black,
@@ -41,12 +43,13 @@ export const theme: TThemes = {
     svg: palette.white,
     switchTrackOff: palette.red,
     switchTrackOn: palette.blue,
-    supermarketsTabNavigator: palette.red,
-    supermarketsTabNavigatorChip: palette.white,
-    supermarketsTabNavigatorChipFocus: palette.black,
+    itemsTabNavigator: palette.red,
+    itemsTabNavigatorChip: palette.white,
+    itemsTabNavigatorChipFocus: palette.black,
     darkModeButton: palette.blue,
     darkModeButtonBorder: palette.white,
     loading: palette.red,
     sectionsTabNavigator: palette.black,
+    addButton: palette.red,
   },
 }

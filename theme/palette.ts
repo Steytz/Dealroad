@@ -4,6 +4,7 @@ type TPalette = {
   blue: string
   black: string
   red: string
+  green: string
 }
 
 export const palette: TPalette = {
@@ -12,4 +13,5 @@ export const palette: TPalette = {
   blue: "#0197f6",
   black: "#02182b",
   red: "#d7263d",
+  green: "#4C9141",
 }
