@@ -1,9 +1,10 @@
 import React, {FC, memo, useCallback, useRef, useState} from "react"
 import WebView, {WebViewMessageEvent} from "react-native-webview"
 import {Loading} from "@generalComps"
-import {ViewStyle} from "react-native"
+import {BackHandler, ViewStyle} from "react-native"
 import {useThemeContext} from "@contexts"
 import {useUpdateEffect} from "@utils"
+import {useFocusEffect} from "@react-navigation/native"
 
 interface Props {
   uri: string
@@ -43,10 +44,29 @@ const ItemsWebview: FC<Props> = ({uri, selectorRemoveList, optimized}) => {
   const injectedJS = selectorRemoveList && optimized ? handleUnwantedElementsRemoval(selectorRemoveList) : undefined
   const onLoad = optimized ? undefined : onWebviewLoad
 
+  const onBackButtonPress = useCallback(() => {
+    try {
+      webviewRef.current?.goBack()
+      return true
+    } catch (err) {
+      console.log("[handleBackButtonPress] Error : ", err)
+      return false
+    }
+  }, [webviewRef])
+
   useUpdateEffect(() => {
     setIsLoading(true)
     webviewRef?.current?.reload()
   }, [optimized])
+
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener("hardwareBackPress", onBackButtonPress)
+      return () => {
+        BackHandler.removeEventListener("hardwareBackPress", onBackButtonPress)
+      }
+    }, [onBackButtonPress, onBackButtonPress]),
+  )
 
   return (
     <>
