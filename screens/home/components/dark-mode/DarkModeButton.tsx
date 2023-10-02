@@ -12,7 +12,7 @@ interface Props {
 const SFButton = (pressed: boolean, colors: TTheme, styleOverride?: ViewStyle): ViewStyle => ({
   borderWidth: 2,
   borderColor: colors.darkModeButtonBorder,
-  borderRadius: 5,
+  borderRadius: 10,
   padding: 4,
   backgroundColor: colors.darkModeButton,
   opacity: pressed ? 0.8 : 1,
