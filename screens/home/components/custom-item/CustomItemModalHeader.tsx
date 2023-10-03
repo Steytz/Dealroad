@@ -11,7 +11,7 @@ const SModalHeaderContainer: ViewStyle = {
   justifyContent: "space-between",
   alignItems: "center",
   marginBottom: spacing[0],
-  borderBottomWidth: 3,
+  borderBottomWidth: 2,
   padding: spacing[1],
 }
 
