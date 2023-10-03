@@ -7,12 +7,15 @@ import {Loading} from "@generalComps"
 
 const SLoading: ViewStyle = {
   backgroundColor: palette.blue,
+  flex: 1,
 }
 
 const Home: FC = () => {
   const {hasAppBeenOpened, setHasAppBeenOpened, isLoading} = useHome()
 
-  if (isLoading) return <Loading loadingItemName="cart" style={SLoading} />
+  if (isLoading) {
+    return <Loading loadingItemName="cart" style={SLoading} />
+  }
 
   if (!hasAppBeenOpened) {
     return <AppFirstOpenWelcome setHasAppBeenOpened={setHasAppBeenOpened} />

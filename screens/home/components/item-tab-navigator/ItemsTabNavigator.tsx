@@ -30,7 +30,8 @@ const getTabNavTitleCustomItem = (focused: boolean, displayName: string, logo: T
 const ItemsTabNavigator: FC<Props> = ({}) => {
   const {supermarkets, optimizedItems, customItems} = useItemsContext()
   const {colors} = useThemeContext()
-  const [noActiveItems, setNoActiveItems] = useState<boolean>(supermarkets.length <= 0 && customItems.length <= 0)
+  const hasNoActiveCustomItems = !customItems.some(csItem => csItem.isActive)
+  const [noActiveItems, setNoActiveItems] = useState<boolean>(supermarkets.length <= 0 && hasNoActiveCustomItems)
 
   if (noActiveItems) {
     return <NoItemsActive setNoActiveItems={setNoActiveItems} />

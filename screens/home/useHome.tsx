@@ -47,7 +47,7 @@ const useHome: TUseHome = () => {
     }
     setTimeout(() => {
       setIsLoading(false)
-    }, 300)
+    }, 100)
   }, [supermarkets.length])
 
   useEffect(() => {

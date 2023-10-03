@@ -53,9 +53,7 @@ const SFEditButton = (pressed: boolean): ViewStyle => ({
   marginHorizontal: spacing[1] - 3,
 })
 
-const SSwitch: ViewStyle = {
-  marginHorizontal: spacing[0],
-}
+const SSwitch: ViewStyle = {}
 
 const ItemSelectionWidgetElement: FC<Props> = ({
   logo: {
