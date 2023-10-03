@@ -1,5 +1,5 @@
 import React, {FC} from "react"
-import {ImageStyle, TextStyle, View, ViewStyle} from "react-native"
+import {ImageStyle, TextStyle, useWindowDimensions, View, ViewStyle} from "react-native"
 import {Text} from "@generalComps"
 import {spacing} from "@theme"
 import LottieView from "lottie-react-native"
@@ -12,9 +12,11 @@ const SContainer: ViewStyle = {
   alignItems: "center",
 }
 
-const SAnimation: ImageStyle = {
-  width: "50%",
-}
+const SFAnimation = (size: number): ViewStyle => ({
+  width: size,
+  height: size,
+  alignSelf: "center",
+})
 
 const SText: TextStyle = {
   textAlign: "center",
@@ -23,10 +25,13 @@ const SText: TextStyle = {
 }
 
 const NoCustomItems: FC<Props> = ({}) => {
+  const {width} = useWindowDimensions()
+  const animationSize = width / 1.8
+
   return (
     <View style={SContainer}>
       <Text text="It seems as if there are no custom deals pages present, feel free to press the plus icon on top or this animation to add some" style={SText} />
-      <LottieView resizeMode="cover" style={SAnimation} source={emptyBoxAnimation} autoPlay loop speed={0.4} />
+      <LottieView resizeMode="contain" style={SFAnimation(animationSize)} source={emptyBoxAnimation} autoPlay loop speed={0.4} />
     </View>
   )
 }

@@ -14,7 +14,7 @@ interface Props {
 const SIconSectionContainer: ViewStyle = {
   flex: 1,
   marginTop: spacing[0],
-  borderBottomWidth: 2,
+  borderBottomWidth: 1,
   paddingBottom: spacing[2],
 }
 

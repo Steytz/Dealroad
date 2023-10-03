@@ -34,7 +34,7 @@ export const defaultSection: TItemsElementSection = {
 const SSectionsContainer: ViewStyle = {
   flex: 1,
   marginTop: spacing[2],
-  borderBottomWidth: 2,
+  borderBottomWidth: 1,
 }
 
 const SSectionsInnerContainer: ViewStyle = {
@@ -42,7 +42,7 @@ const SSectionsInnerContainer: ViewStyle = {
 }
 
 const SSectionItemContainer: ViewStyle = {
-  borderWidth: 2,
+  borderWidth: 1,
   borderRadius: 10,
   paddingHorizontal: spacing[0],
   paddingVertical: spacing[1],
