@@ -6133,10 +6133,10 @@ react-native-tab-view@^3.5.2:
   dependencies:
     use-latest-callback "^0.1.5"
 
-react-native-vector-image@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/react-native-vector-image/-/react-native-vector-image-0.3.3.tgz#ee0f15b0135439585bfd204100b2837f9c4a8e32"
-  integrity sha512-btvAMeW9gZngWkvmr5ef/1e4jMS0gwSZjHJVxuunAQWvzdrhFecBfoSLsC6zaDSjSrLeAWpg3tM4+rgZAmoB9Q==
+react-native-vector-image@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-vector-image/-/react-native-vector-image-0.4.4.tgz#9caa1e88febf1b51a0c02306d601aa78f3b7118a"
+  integrity sha512-o8G1Y0S8FWLDDeizMM7J3mDosNAyt/dG6WPCqjuwETl1OosMU/41wHtU5Pf6IwlfELBNPkv6qK5esqUUVyIbTg==
   dependencies:
     chalk "^4.1.1"
     chroma-js "^2.1.1"
